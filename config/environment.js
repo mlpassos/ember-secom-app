@@ -4,8 +4,8 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'embeter-materialize',
     environment: environment,
-    rootURL: '/',
-    locationType: 'auto',
+    baseURL: '/',
+    defaultLocationType: 'hash',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -16,7 +16,41 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    }    
+    },
+    cordova: {
+      rebuildOnChange: true,
+      emulate: false,
+      emulateTarget: {
+        ios: "iPad-2",
+        android: "android-20"
+      },
+
+      // Which platform to build and/or emulate
+      //
+      // default: 'ios'
+      platform: 'android',
+
+      // Which URL the ember server is running on. This is used when using
+      // live-reload that comes with the starter kit.
+      //
+      // default: 'the-device-ip:4200'
+      emberUrl: 'http://192.168.0.18:4200',
+
+      // Whether or not to use liveReload on the device simulator. Requires a few
+      // plugins to be installed that come with the starter-kit. It will cause your
+      // app to not boot up in the browser
+      //
+      // default: false and iOS
+      liveReload: {
+        enabled: true,
+        platform: 'android'
+      }
+    },
+    EmberENV: {
+      EXTEND_PROTOTYPES: {
+        Date: false,
+      }
+    }
   };
 
   ENV.contentSecurityPolicy = {
@@ -26,11 +60,6 @@ module.exports = function(environment) {
     'connect-src': "'self' maps.gstatic.com",
     'img-src': "'self' *.googleapis.com maps.gstatic.com csi.gstatic.com",
     'style-src': "'self' 'unsafe-inline' fonts.googleapis.com maps.gstatic.com"
-  };
-
-  ENV.googleMap = {
-    apiKey: 'AIzaSyAcqXF6nzd3bfoM7LvN9Y4NloaHI-leLq0',
-    libraries: ['places','drawing', 'visualization']
   };
 
   if (environment === 'development') {
