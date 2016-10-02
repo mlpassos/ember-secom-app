@@ -12,6 +12,9 @@
         },
         "cordova-plugin-contacts": {
             "PACKAGE_NAME": "br.pa.gov.secom.app"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "br.pa.gov.secom.app"
         }
     },
     "dependent_plugins": {

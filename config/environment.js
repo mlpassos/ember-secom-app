@@ -42,7 +42,7 @@ module.exports = function(environment) {
       //
       // default: false and iOS
       liveReload: {
-        enabled: true,
+        enabled: false,
         platform: 'android'
       }
     },

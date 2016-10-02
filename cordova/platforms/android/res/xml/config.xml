@@ -7,6 +7,9 @@
     <feature name="Contacts">
         <param name="android-package" value="org.apache.cordova.contacts.ContactManager" />
     </feature>
+    <feature name="Notification">
+        <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
+    </feature>
     <name>EmbeterMaterialize</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
