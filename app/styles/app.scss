@@ -1,6 +1,16 @@
 @import 'materialize';
 @import 'ember-cli-materialize';
 
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1 0 auto;
+}
+
 .tags-item {
 	background-color:green !important;
 }
@@ -109,11 +119,3 @@ img {
   z-index: 1;
   will-change: width, height;
 }
-
-
-
-
-
-
-
-
