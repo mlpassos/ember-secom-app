@@ -8,11 +8,13 @@ export default Ember.Component.extend({
 		if (ct.length) {
 			// alert('existe page-content');
 			ct.delegate('a', 'click', function(e) {
-			   e.preventDefault();
+			   // e.preventDefault();
 			   let url = $(this).attr('href');
 			   // console.log($(this).attr('href') + ' substituido com sucesso!');
 			   // window.open( $(this).attr('href'), 'popup' );
-			   let ref = window.open(url, '_blank', 'location=yes');
+			   // console.log('trocou');
+			   // alert('tem');
+			   var ref = cordova.InAppBrowser.open(url, '_blank', 'location=yes');
 			});	
 		}
 	}

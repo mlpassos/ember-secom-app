@@ -17,45 +17,47 @@ export default Ember.Route.extend({
     	} else {
     		alert('nao existe InAppBrowser');
     	}
-    	var push = PushNotification.init({
-		    android: {
-		        senderID: "605443485040"
-		    },
-		    browser: {
-		        pushServiceURL: 'https://ember-secom-app.firebaseio.com'
-		    },
-		    ios: {
-		        alert: "true",
-		        badge: "true",
-		        sound: "true"
-		    },
-		    windows: {}
+    	PushNotification.hasPermission(function(data) {
+		    if (data.isEnabled) {
+		       var push = PushNotification.init({
+				    android: {
+				        senderID: "605443485040",
+				        forceShow: "true"
+				    },
+				    browser: {
+				        pushServiceURL: 'https://ember-secom-app.firebaseio.com'
+				    },
+				    ios: {
+				        alert: "true",
+				        badge: "true",
+				        sound: "true"
+				    },
+				    windows: {}
+				});
+
+				push.on('registration', function(data) {
+				    // data.registrationId
+				    alert('registrado ' + data.registrationId);
+				});
+
+				push.on('notification', function(data) {
+					// alert('mensagem: ' + data.message);
+					navigator.notification.alert(
+					    data.message,  // message
+					    function(){},         // callback
+					    data.title,            // title
+					    'Ok'                  // buttonName
+					);
+				});
+
+				push.on('error', function(e) {
+				    alert('Erro de push: ' + e.message);
+				});
+		    } else {
+		    	alert('Push is off');
+		    }
 		});
 
-		push.on('registration', function(data) {
-		    // data.registrationId
-		    alert('registrado ' + data.registrationId);
-		});
-
-		push.on('notification', function(data) {
-			// alert('mensagem: ' + data.message);
-			navigator.notification.alert(
-			    data.message,  // message
-			    function(){},         // callback
-			    data.title,            // title
-			    'Ok'                  // buttonName
-			);
-		    // data.message,
-		    // data.title,
-		    // data.count,
-		    // data.sound,
-		    // data.image,
-		    // data.additionalData
-		});
-
-		push.on('error', function(e) {
-		    alert(e.message);
-		});
 	},	
 	model() {
 		return props;

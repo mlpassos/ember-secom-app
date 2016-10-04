@@ -15,6 +15,11 @@ export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
 			case 'findRecord':
 				console.log('page.findRecord: ', target);
 				payload = payload.page;
+				// payload = payload.map((page) => {
+				payload.oldId = payload.id;
+				payload.id = payload.slug;
+					// return page;
+				// });
 				payload = {page: payload};
 				break;
 			default:
