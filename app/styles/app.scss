@@ -1,16 +1,6 @@
 @import 'materialize';
 @import 'ember-cli-materialize';
 
-body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-
-.main {
-  flex: 1 0 auto;
-}
-
 .tags-item {
 	background-color:green !important;
 }
@@ -118,4 +108,14 @@ img {
   white-space: nowrap;
   z-index: 1;
   will-change: width, height;
+}
+
+.img-rounded {
+  border-radius:50%;
+}
+
+.btn-small {
+  // text-align:center;
+  // padding:0 0 0 20px;
+  text-transform: capitalize;
 }
