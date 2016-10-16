@@ -7,26 +7,26 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('home');
+  this.route('home', {});
   this.route('noticias', {path: 'noticias/:page'}, function() {
     
   });
   this.route('noticia', {path: 'noticia/:slug'}, function() {
 
   });
-  this.route('tags');
-  this.route('contato');
-  this.route('sobre');
-  this.route('downloads');
-  this.route('search');
+  this.route('tags', {});
+  this.route('contato', {});
+  this.route('sobre', {});
+  this.route('downloads', {});
+  this.route('search', {});
   this.route('tags', {});
   this.route('tag', {path: 'tag/:slug/:pageid'}, function() {
     //
   });
-  this.route('loading');
-  this.route('projetos');
-  this.route('perfil');
-  this.route('preferencias');
+  this.route('loading', {});
+  this.route('projetos', {});
+  this.route('perfil', {});
+  this.route('preferencias', {});
 });
 
 export default Router;

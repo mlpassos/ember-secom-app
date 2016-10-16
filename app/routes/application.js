@@ -2,8 +2,10 @@ import TransitionToListenerRoute from 'ember-cli-routing-service/routes/transiti
 
 const { get } = Ember;
 
+
 export default TransitionToListenerRoute.extend({
     cordova: Ember.inject.service(),
+    session: Ember.inject.service(),
     activate: function() {
       this.get('cordova').on('deviceready', this, '_deviceReady');
     },
@@ -55,15 +57,6 @@ export default TransitionToListenerRoute.extend({
                 alert('Push is off');
             }
         });
-        // Google Login
-        window.plugins.googleplus.login({},
-            function (obj) {
-              alert(JSON.stringify(obj)); // do something useful instead of alerting
-            },
-            function (msg) {
-              alert('error: ' + msg);
-            }
-        );
     },
 	beforeModel(){
         // debugger;
@@ -74,13 +67,16 @@ export default TransitionToListenerRoute.extend({
     },
     actions:{
         login(){
-            get(this,'session').open('firebase', { provider: 'google'}).then(function(data) {
-                console.log(data);
-            });
+            this.get('session').login();
         },
         logout(){
-            get(this,'session').close();
+            this.get('session').logout();
             this.route.transitionTo('home');
         }
     }
-})
+    ,
+    setupController(controller) {
+        this._super(...arguments);
+        controller.set('session', this.get('session'));
+    }
+});
