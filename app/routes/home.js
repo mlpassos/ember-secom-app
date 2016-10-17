@@ -8,6 +8,11 @@ let props = {
 
 
 export default Ember.Route.extend({
+	session: Ember.inject.service(),
+    setupController(controller) {
+        this._super(...arguments);
+        controller.set('session', this.get('session'));
+    },
 	// cordova: Ember.inject.service(),
 	// activate: function() {
  //      this.get('cordova').on('deviceready', this, '_deviceReady');

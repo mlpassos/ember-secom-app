@@ -1,33 +1,76 @@
 import Ember from 'ember';
 
+const {RSVP: {Promise}} = Ember;
+
 export default Ember.Service.extend({
+	store: Ember.inject.service(),
 	user: {
 		isLoggedIn: false,
-		idToken: '',
+		userId: '',
 		displayName: '',
 		email: '',
 		imageUrl: ''
 	},
-	isLoggedIn() {
-		console.log('aqui', this.get('user.isLoggedIn'));
-		if (this.get('user.isLoggedIn')) {
-			return true;
-		} else {
-			return false;
-		}
-	},
+	// isLoggedIn() {
+	// 	console.log('aqui', this.get('user.isLoggedIn'));
+	// 	if (this.get('user.isLoggedIn')) {
+	// 		return true;
+	// 	} else {
+	// 		return false;
+	// 	}
+	// },
 	login() {
 		// Google Login
 		let _this = this;
+		// alert('oi');
+		 // this.get('store').query('user', {userId: 'testando' }).then( (records) =>{
+   //          console.log('AQUI');
+   //          if(records.get('length') === 0){
+   //          	alert('nao tem');
+   //          } else {
+   //          	alert('ja tem');
+   //          }
+		 // });
         window.plugins.googleplus.login({},
             function (obj) {
-              // alert(JSON.stringify(obj)); // do something useful instead of alerting
-              _this.set('user.isLoggedIn', true);
-              _this.set('user.idToken', obj.idToken);
+              alert(JSON.stringify(obj)); // do something useful instead of alerting
               _this.set('user.displayName', obj.displayName);
               _this.set('user.email', obj.email);
               _this.set('user.imageUrl', obj.imageUrl);
-              // alert(_this.get('user.isLoggedIn'));
+              _this.set('user.isLoggedIn', true);
+              _this.set('user.userId', obj.userId);
+              // alert(_this.get('user'));
+              _this.get('store').query('user', {orderBy: 'userId', equalTo: obj.userId }).then( (records) =>{
+		            if(records.get('length') === 0){
+		            	let userRecord = _this.get('store').createRecord('user', {
+			              	userId: obj.userId,
+			              	email: obj.email,
+			              	displayName: obj.displayName,
+			                imageUrl: obj.imageUrl
+			            });
+			            userRecord.save();
+		            } else {
+		            	alert('ja tem');
+		            }
+		      });
+              
+
+      //       return new Promise((resolve)=>{
+		    //     _this.get('store').query('user', {orderBy: 'userId', equalTo: obj.userId }).then( (records) =>{
+		    //         if(records.get('length') === 0){
+		    //             resolve(_this.get('store').createRecord('user',{
+		    //                 userId: obj.userId,
+			   //            	email: obj.email,
+			   //            	displayName: obj.displayName,
+			   //            	imageUrl: obj.imageUrl
+		    //             }));// end resolve
+		    //         }// end if
+		    //         else{
+		    //             resolve(records.get('firstObject'));
+		    //         }// end else
+		    //     });// end store
+		    // }); // end promise
+
             },
             function (msg) {
               alert('error: ' + msg);
@@ -35,6 +78,16 @@ export default Ember.Service.extend({
         );
 	},
 	logout() {
-		alert('logout');
+		let _this = this;
+		window.plugins.googleplus.logout(
+		    function (msg) {
+		      alert('Você saiu'); // do something useful instead of alerting
+		      _this.set('user.isLoggedIn', false);
+		      _this.set('user.displayName', '');
+              _this.set('user.email', '');
+              _this.set('user.imageUrl', '');
+              _this.set('user.userId', '');
+		    }
+		);
 	}
 });

@@ -2,10 +2,10 @@
 	<div class="row">
 	  <div class="col s12 m12">
       {{!-- {{log session.currentUser}} --}}
-	    {{#if session.isAuthenticated}}
+	    {{#if session.user.isLoggedIn}}
         {{!-- {{#each session.currentUser.providerData as |user|}} --}}
           <h1 class="header">Olá,</h1>
-          <h4 class="header">{{session.currentUser.displayName}}</h4>
+          <h4 class="header">{{session.user.displayName}}</h4>
           {{model.subtitle}}
         {{!-- {{/each}} --}}
       {{else}}

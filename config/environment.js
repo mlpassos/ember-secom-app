@@ -7,13 +7,13 @@ module.exports = function(environment) {
     baseURL: '/',
     defaultLocationType: 'hash',
     // signInUrl: 'http://localhost:4200/api/v1/sessions',
-    // firebase: {
-    //   apiKey: "AIzaSyCDsdkUXLBxGAMGmNmTxIK1Vl8ANfGujz4",
-    //   authDomain: "ember-secom-app.firebaseapp.com",
-    //   databaseURL: "https://ember-secom-app.firebaseio.com",
-    //   storageBucket: "ember-secom-app.appspot.com",
-    //   messagingSenderId: "605443485040"  
-    // },
+    firebase: {
+      apiKey: "AIzaSyCDsdkUXLBxGAMGmNmTxIK1Vl8ANfGujz4",
+      authDomain: "ember-secom-app.firebaseapp.com",
+      databaseURL: "https://ember-secom-app.firebaseio.com",
+      storageBucket: "ember-secom-app.appspot.com",
+      messagingSenderId: "605443485040"  
+    },
     // torii: {  
     //   sessionServiceName: 'session',
     //   providers: {

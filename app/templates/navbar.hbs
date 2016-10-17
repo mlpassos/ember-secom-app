@@ -29,21 +29,10 @@
   {{#unless session.user.isLoggedIn}}
       <li><a href="#" {{action 'login' }}>Login</a></li>
   {{else}}
-     <li>
-        {{!-- <a href='#'>
-            <img src='{{session.currentUser.photoURL}}' height='30px' width='30px' class="img-rounded"/>
-        </a> --}}
-        {{#md-btn-dropdown hover=true text=session.user.displayName belowOrigin=true buttonType="flat" class="indigo white-text btn-large btn-small"}}
-          {{#link-to 'perfil' tagName='li'}}
-            {{link-to 'Perfil'}}
-          {{/link-to}}
-          {{#link-to 'preferencias' tagName='li'}}
-            {{link-to 'Preferencias'}}
-          {{/link-to}}
-          <li class="divider"></li>
-          <li><a href="#" {{action 'logout'}}>Sair</a></li>
-        {{/md-btn-dropdown}}
-    </li>
+    {{#link-to 'perfil' tagName='li'}}
+      {{link-to 'Perfil'}}
+    {{/link-to}}
+     <li><a href="#" {{action 'logout'}}>Sair</a></li>
   {{/unless}}
   {{#link-to 'search' tagName='li'}}
     <a href=""><i class="mdi-action-search"></i></a>
