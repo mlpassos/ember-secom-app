@@ -11,14 +11,6 @@ export default Ember.Service.extend({
 		email: '',
 		imageUrl: ''
 	},
-	// isLoggedIn() {
-	// 	console.log('aqui', this.get('user.isLoggedIn'));
-	// 	if (this.get('user.isLoggedIn')) {
-	// 		return true;
-	// 	} else {
-	// 		return false;
-	// 	}
-	// },
 	login() {
 		// Google Login
 		let _this = this;
@@ -48,9 +40,21 @@ export default Ember.Service.extend({
 			              	displayName: obj.displayName,
 			                imageUrl: obj.imageUrl
 			            });
-			            userRecord.save();
+			            userRecord.save().then(function() {
+			            	navigator.notification.alert(
+		                        'Usuário cadastrado com sucesso',  // message
+		                        function(){},         // callback
+		                        'Aviso',            // title
+		                        'Ok'                  // buttonName
+		                    );
+			            });
 		            } else {
-		            	alert('ja tem');
+	            		navigator.notification.alert(
+	                        'Usuário já cadastrado',  // message
+	                        function(){},         // callback
+	                        'Aviso',            // title
+	                        'Ok'                  // buttonName
+	                    );
 		            }
 		      });
               

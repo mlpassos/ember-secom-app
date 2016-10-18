@@ -37,7 +37,7 @@ module.exports = function(environment) {
       // when it is created
     },
     cordova: {
-      rebuildOnChange: false,
+      rebuildOnChange: true,
       emulate: false,
       emulateTarget: {
         ios: "iPad-2",

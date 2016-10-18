@@ -58,13 +58,6 @@ export default TransitionToListenerRoute.extend({
             }
         });
     },
-	beforeModel(){
-        // debugger;
-        // return this.get('session').fetch().catch(function(){});
-    },
-    model(){
-        // return this.store.findAll('post');
-    },
     actions:{
         login(){
             this.get('session').login();
@@ -73,8 +66,7 @@ export default TransitionToListenerRoute.extend({
             this.get('session').logout();
             this.route.transitionTo('home');
         }
-    }
-    ,
+    },
     setupController(controller) {
         this._super(...arguments);
         controller.set('session', this.get('session'));
