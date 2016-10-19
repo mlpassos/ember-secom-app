@@ -25,8 +25,8 @@ Router.map(function() {
   });
   this.route('loading', {});
   this.route('projetos', {});
-  this.route('perfil', {});
-  this.route('preferencias', {});
+  this.route('perfil');
+  this.route('preferencias');
 });
 
 export default Router;

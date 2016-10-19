@@ -8,19 +8,22 @@
           </div>
         </div>
         <div class="row">
-		    {{md-input value=model.user.displayName label='Nome' type="text" class="col s12 m12" validate=true}}
-		    {{md-input value=model.user.email label='Email' type="email" class="col s12 m12" validate=true}}
-		    <div class="col s12 m12">
-		    	{{md-btn-submit icon='mdi-content-send'
-			    iconPosition='right' action="gravarUsuario" actionArg=model.user 
-			    text='Gravar'}}
-		    </div>
-	   </div>
+  		    {{md-input value=model.user.displayName label='Nome' type="text" class="col s12 m12" validate=true}}
+  		    {{md-input value=model.user.email label='Email' type="email" class="col s12 m12" validate=true}}
+  		    <div class="col s12 m12">
+  		    	{{md-btn-submit icon='mdi-content-send'
+  			    iconPosition='right' action="gravarUsuario" actionArg=model.user 
+  			    text='Gravar'}}
+  		    </div>
+        </div>
+        <hr>
+        {{preferencias-view user=model.user tags=model.tags checkboxSelections=checkboxSelections}}
       {{else}}
           <h1 class="header">{{model.props.title}}</h1>
           <h4 class="header">{{model.props.subtitle}}</h4>
           {{model.props.content}}
-      {{/if}}      
-    </div>
+      {{/if}}  
+    </div>    
   </div>
 </div>
+{{!-- </div> --}}

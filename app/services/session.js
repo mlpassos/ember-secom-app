@@ -39,6 +39,7 @@ export default Ember.Service.extend({
 			              	email: obj.email,
 			              	displayName: obj.displayName,
 			                imageUrl: obj.imageUrl
+			                // tags: {slug: 'comunicacao', title:'titulo', description:'desc', post_count:10}
 			            });
 			            userRecord.save().then(function() {
 			            	navigator.notification.alert(

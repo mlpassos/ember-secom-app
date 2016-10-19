@@ -2,6 +2,11 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 	session: Ember.inject.service(),
+	checkboxSelections: ['38', '40', '41'],
+	checkboxChoices: [{
+		id: 1,
+		label: 'teste'
+	}],
 	props: {
 		title: 'Perfil',
 		subtitle: 'Bem-vindo ao seu perfil',
@@ -20,13 +25,11 @@ export default Ember.Route.extend({
 			}).then(function(user) {
 			  return user;
 			}),
-		    props: this.get('props')
+		    props: this.get('props'),
+		    tags: this.store.findAll('tag')
 		});
 	},
 	actions: {
-		teste() {
-			alert('oi');
-		},
 		gravarUsuario(user) {
 			let userId = user.get('userId');
 			let displayName = user.get('displayName');
@@ -48,5 +51,7 @@ export default Ember.Route.extend({
 	setupController(controller) {
 		this._super(...arguments);
 		controller.set('session', this.get('session'));
+		controller.set('checkboxChoices', this.get('checkboxChoices'));
+		controller.set('checkboxSelections', this.get('checkboxSelections'));
 	}
 });

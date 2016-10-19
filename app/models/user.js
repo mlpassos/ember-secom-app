@@ -7,4 +7,5 @@ export default DS.Model.extend({
 	displayName: attr('string'),
 	email: attr('string'),
 	imageUrl: attr('string')
+	// tags: DS.hasMany('tag')
 });
